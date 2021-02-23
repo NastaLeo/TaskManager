@@ -1,0 +1,1 @@
+Task Manager object is to create and follow personal tasks
