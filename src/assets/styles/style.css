@@ -13,7 +13,7 @@
   button[data-action="add"] {
     outline: none;
     cursor: pointer;
-    min-width: 200px;
+    width: 80%;
     color: white;
     border: 2px solid rgb(201, 142, 162);
     box-shadow: 3px 3px rgb(201, 142, 162);
@@ -59,7 +59,7 @@
     width: 70%;
     border-radius: 5px;
     text-indent: 10px; 
-    border: 2px solid  rgb(199, 24, 83);
+    border: 2px solid  rgb(206, 66, 112);
   }
   
   select{
@@ -67,12 +67,12 @@
     outline: none;
     overflow-y: hidden;
     height: 17px;
-    border: 1.5px solid  rgb(199, 24, 83);
+    border: 1.5px solid  rgb(206, 66, 112);
     background-color: rgb(201, 142, 162);
   }
   
   option {
-    border: 1px solid  rgb(199, 24, 83);
+    border: 1px solid  rgb(206, 66, 112);
     outline: none;
     display: inline;
     padding: 0px 5px;
@@ -87,7 +87,7 @@
     border-radius: 5px;
     outline: none;
     background-color: rgb(201, 142, 162);
-    border: 2px solid rgb(199, 24, 83);
+    border: 2px solid rgb(206, 66, 112);
     
   } 
   
@@ -136,6 +136,14 @@
     color: rgb(223, 62, 62);
   }
 
+ .chosen {
+   opacity: .6;
+ }
+
+ .chosen:hover {
+  opacity: 1;
+}
+
   ul {
     padding-left: 10px;
     padding-right: 10px;
@@ -143,7 +151,7 @@
   
   li {
     font-family: 'Playfair Display', serif;
-    min-height: 20px;
+    max-height: 80px;
     display: flex;
     align-items: baseline;
     list-style: none; 

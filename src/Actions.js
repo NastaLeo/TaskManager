@@ -37,22 +37,20 @@ function submitTask(event) {
     let option = document.querySelectorAll('option');
 
     if (option[0].selected) {
-        let a = new UnimportantTask(inputText.value);
-        a.create();
+        new UnimportantTask(inputText.value).create();
         inputText.value = '';
         option[0].selected = false;
     } else if (option[1].selected) {
-        let b = new ImportantTask(inputText.value);
-        b.create();
+        new ImportantTask(inputText.value).create();
         inputText.value = '';
         option[1].selected = false;
     } else if(option[2].selected) {
-        let c = new UrgentTask(inputText.value);
-        c.create();
+        new UrgentTask(inputText.value).create();
         inputText.value = '';
         option[2].selected = false;
     }
 }
+
 
 
      

@@ -1,20 +1,24 @@
 import './assets/styles/style.css';
+import planner from './assets/images/planner.png';
+import {buttonAdd, openForm, close, closeForm, submitTask} from './Actions.js';
+import Task from './Basic.js';
+import ImportantTask from "./Important.js";
+import UnimportantTask from "./Unimportant.js";
+import UrgentTask from "./Urgent.js";
+
+
 
 //draw favicon
-import planner from './assets/images/planner.png';
 let favicon = document.querySelector('link[rel=icon]');
 favicon.href = planner;
 
-
-
-import {buttonAdd, openForm, close, closeForm, submitTask} from './Actions.js';
-import Task from './Basic.js';
-
-
-//show-hide form fo fill in
+//show form fo fill in
 buttonAdd.addEventListener('click', openForm);
 
+//hide form fo fill in
 close.addEventListener('click', closeForm);
+
+
 
 
 let form = document.querySelector('form');
@@ -23,10 +27,21 @@ let form = document.querySelector('form');
 form.addEventListener('submit', submitTask);
 
 
+
+
+
 let list = document.querySelector('div.list-container');
 
 //delete task
-list.addEventListener('click', Task.delete);
+list.addEventListener('click', new Task().delete);
 
-//hide non-marked tasks
-list.addEventListener('click', Task.hide);
+//maintain checked state
+list.addEventListener('click', new Task().mark);
+
+//hide/show non-marked tasks
+list.addEventListener('click', new Task().hideShow);
+
+//tasks after their unmark
+list.addEventListener('click', new ImportantTask().hideTask);
+list.addEventListener('click', new UnimportantTask().hideTask);
+list.addEventListener('click', new UrgentTask().hideTask);
