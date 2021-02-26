@@ -1,0 +1,35 @@
+{
+  "name": "taskmanager",
+  "version": "1.0.0",
+  "description": "Task Manager object is to create and follow personal tasks",
+  "main": "index.js",
+  "scripts": {
+    "build": "webpack --mode production",
+    "dev": "webpack --mode development",
+    "start": "webpack serve",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/NastaLeo/TaskManager.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/NastaLeo/TaskManager/issues"
+  },
+  "homepage": "https://github.com/NastaLeo/TaskManager#readme",
+  "devDependencies": {
+    "@babel/core": "^7.13.1",
+    "@babel/preset-env": "^7.13.5",
+    "babel-loader": "^8.2.2",
+    "clean-webpack-plugin": "^3.0.0",
+    "css-loader": "^5.0.2",
+    "file-loader": "^6.2.0",
+    "html-webpack-plugin": "^5.2.0",
+    "style-loader": "^2.0.0",
+    "webpack": "^5.24.0",
+    "webpack-cli": "^4.5.0",
+    "webpack-dev-server": "^3.11.2"
+  }
+}
