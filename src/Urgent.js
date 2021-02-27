@@ -1,22 +1,28 @@
 import Task from './Basic.js';
+import { urgentStore } from './Store.js';
 
 
 export default class UrgentTask extends Task {
 
-    constructor(name, checked, type = 'urgent') {
-        super(name, checked);
-        this.type = type
+     create(li, rubbish) {
+
+        super.create(li, rubbish);
+
+        li.setAttribute('data-urgent', urgentStore.length);
+
+        if (Array.from(document.querySelector('div.urgent ul').children).length > 0 && 
+            Array.from(document.querySelector('div.urgent ul').children).some(li => li.classList.contains('clean'))) {
+                
+                li.classList.add('clean')
+
+        }
+
+        document.querySelector('div.urgent ul').append(li);
+
+        this.id = urgentStore.length;
+
+        urgentStore.push(this);
+
     }
 
-    
-    hideTask(event) {
-        if (event.target.tagName != 'INPUT') {
-            return
-        } else if (!document.querySelector('span.urgent').classList.contains('chosen')) {
-            return
-        } else if (!event.target.checked) {
-            event.target.setAttribute('checked', false);
-            event.target.closest('li').classList.add('clean');
-        } 
-    }
 }
