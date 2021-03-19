@@ -74,19 +74,6 @@ export function submitTask(event, rubbish) {
 }
 
 
-
-
-//internal function to find task index and is used in functions: markTask, deleteTask
-// function defineIndex(type, name, store) {
-
-//     const index = store.findIndex(el => el.id == type[name]);
-
-//     return index;
-
-// }
-
-
-
 //mark checked status
 export function markTask(event) {
 
@@ -110,7 +97,7 @@ export function markTask(event) {
             
         } else if (taskTypeName === 'important') {
 
-           const importantIndex = importantStore.findIndex(important => important.id == taskType[taskTypeName]);
+            const importantIndex = importantStore.findIndex(important => important.id == taskType[taskTypeName]);
 
             importantStore[importantIndex].checked = event.target.checked;
             
@@ -173,60 +160,114 @@ export function deleteTask (event) {
 
 
 
+//hide-show non-marked tasks
+export function hideShowTask(event) {
+
+    if (!event.target.classList.contains('tasks')) {
+
+        return
+
+    } else if (!event.target.classList.contains('chosen')){
+
+        for (let li of Array.from(event.target.nextElementSibling.children)){
+            
+            if (!li.firstElementChild.checked) {
+
+                li.classList.add('clean');
+                event.target.classList.add('chosen');
+
+            } 
+                    
+        }
+
+    } else if (event.target.classList.contains('chosen')) {
+
+        for (let li of Array.from(event.target.nextElementSibling.children)){
+            
+            if (!li.firstElementChild.checked) {
+
+                li.classList.remove('clean');
+                event.target.classList.remove('chosen');
+
+            } 
+
+        }
+
+    }
+
+}
+       
 
 
 
 
-//export function hideShowTask(event) {
-//     if (!event.target.classList.contains('tasks')) {
-//         console.log(4)
-//         return
-//     } else {
-//         for (let li of Array.from(event.target.nextElementSibling.children)){
-//              console.log(li)
-//             if (!li.firstElementChild.checked) {
-//                console.log(2);
-//                li.classList.toggle('clean');
-//                event.target.classList.toggle('chosen')
-//             }
-//         }
-//     } 
-// }
+
+//automatically hide tasks after their unmark if hide function is active
+export function hideTask(event) {
+
+    const taskType = event.target.parentElement.dataset;
+    const taskTypeName = Object.keys(taskType)[0];
+
+    if (event.target.tagName != 'INPUT') {
+
+        return
+
+    } else if (event.target.parentElement.parentElement.previousElementSibling.classList.contains('unimportant')) {
+
+        if (!document.querySelector('span.unimportant').classList.contains('chosen')) {
+
+            return
+
+        } else {
+
+            event.target.setAttribute('checked', event.target.checked);
+
+            const unimportantIndex = unimportantStore.findIndex(unimportant => unimportant.id == taskType[taskTypeName]);
+
+            unimportantStore[unimportantIndex].checked = event.target.checked;
+
+            event.target.closest('li').classList.add('clean');
+
+        }
+  
+    } else if (event.target.parentElement.parentElement.previousElementSibling.classList.contains('important')) {
+
+        if (!document.querySelector('span.important').classList.contains('chosen')) {
+
+            return
+
+        } else {
+
+            event.target.setAttribute('checked', event.target.checked);
+
+            const importantIndex = importantStore.findIndex(important => important.id == taskType[taskTypeName]);
+
+            importantStore[importantIndex].checked = event.target.checked;
+
+            event.target.closest('li').classList.add('clean');
+
+        }
+
+    } else if (event.target.parentElement.parentElement.previousElementSibling.classList.contains('urgent')) {
+
+        if (!document.querySelector('span.urgent').classList.contains('chosen')) {
+
+            return
+
+        } else {
+
+            event.target.setAttribute('checked', event.target.checked);
+
+            const urgentIndex = urgentStore.findIndex(urgent => urgent.id == taskType[taskTypeName]);
+
+            urgentStore[urgentIndex].checked = event.target.checked;
+
+            event.target.closest('li').classList.add('clean');
+
+        }
+    
+    }
+    
+}
 
 
-
-
-
-// hideTask(event) {
-//     if (event.target.tagName != 'INPUT') {
-//         return
-//     } else if (!document.querySelector('span.important').classList.contains('chosen')) {
-//         return
-//     } else if (!event.target.checked) {
-//         event.target.setAttribute('checked', false);
-//         event.target.closest('li').classList.add('clean');
-//     } 
-// }
-
-// hideTask(event) {
-//     if (event.target.tagName != 'INPUT') {
-//         return
-//     } else if (!document.querySelector('span.unimportant').classList.contains('chosen')) {
-//         return
-//     } else if (!event.target.checked) {
-//         event.target.setAttribute('checked', false);
-//         event.target.closest('li').classList.add('clean');
-//     } 
-// }
-
-
-// hideTask(event) {
-//     if (event.target.tagName != 'INPUT') {
-//         return
-//     } else if (!document.querySelector('span.urgent').classList.contains('chosen')) {
-//         return
-//     } else if (!event.target.checked) {
-//         event.target.setAttribute('checked', false);
-//         event.target.closest('li').classList.add('clean');
-//     } 
-// }

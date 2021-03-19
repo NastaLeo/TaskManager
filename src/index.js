@@ -1,4 +1,4 @@
-import {openForm, closeForm, submitTask, markTask, deleteTask} from './Actions.js';
+import {openForm, closeForm, submitTask, markTask, deleteTask, hideShowTask, hideTask} from './Actions.js';
 
 import planner from './assets/images/planner.png';
 import cross from './assets/images/cross.png';
@@ -47,10 +47,10 @@ list.addEventListener('click', (event) => deleteTask(event));
 
 
 
-//hide/show non-marked tasks
-// list.addEventListener('click', hideShowTask());
+//hide-show non-marked tasks
+list.addEventListener('click', (event) => hideShowTask(event));
 
-//tasks after their unmark
-// list.addEventListener('click', new ImportantTask().hideTask);
-// list.addEventListener('click', new UnimportantTask().hideTask);
-// list.addEventListener('click', new UrgentTask().hideTask);
+
+
+//automatically hide tasks after their unmark if hide function is active
+list.addEventListener('click', (event) => hideTask(event));
