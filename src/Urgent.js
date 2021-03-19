@@ -1,12 +1,12 @@
-import Task from './Basic.js';
-import { urgentStore } from './Store.js';
+import Task from './basic.js';
+import { urgentStore } from './store.js';
 
 
 export default class UrgentTask extends Task {
 
-     create(li, rubbish) {
+     create(li, pencil, rubbish) {
 
-        super.create(li, rubbish);
+        super.create(li, pencil, rubbish);
 
         li.setAttribute('data-urgent', urgentStore.length);
 
@@ -22,6 +22,8 @@ export default class UrgentTask extends Task {
         this.id = urgentStore.length;
 
         urgentStore.push(this);
+
+        localStorage.setItem('urgentStore', JSON.stringify(urgentStore));
 
     }
 

@@ -1,11 +1,11 @@
-import Task from './Basic.js';
-import { importantStore } from './Store.js';
+import Task from './basic.js';
+import { importantStore } from './store.js';
 
 export default class ImportantTask extends Task {
 
-    create(li, rubbish) {
+    create(li, pencil, rubbish) {
 
-        super.create(li, rubbish);
+        super.create(li, pencil, rubbish);
 
         li.setAttribute('data-important', importantStore.length);
         
@@ -21,6 +21,8 @@ export default class ImportantTask extends Task {
         this.id = importantStore.length;
 
         importantStore.push(this);
+
+        localStorage.setItem('importantStore', JSON.stringify(importantStore));
        
     }
 

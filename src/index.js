@@ -1,8 +1,9 @@
-import {openForm, closeForm, submitTask, markTask, deleteTask, hideShowTask, hideTask} from './Actions.js';
+import {openForm, closeForm, submitTask, markTask, deleteTask, hideShowTask, hideTask, editTask, loadingTask} from './actions.js';
 
 import planner from './assets/images/planner.png';
 import cross from './assets/images/cross.png';
-import rubbish from './assets/images/rubbish1.png';
+import pencil from './assets/images/edit.png';
+import rubbish from './assets/images/rubbish.png';
 
 
 import './assets/styles/style.css';
@@ -34,7 +35,7 @@ close.addEventListener('click', () => closeForm(addButton, addList));
 
 
 //submitTask
-form.addEventListener('submit', (event) => submitTask(event, rubbish));
+form.addEventListener('submit', (event) => submitTask(event, pencil, rubbish, addList, addButton));
 
 
 //mark checked status
@@ -54,3 +55,14 @@ list.addEventListener('click', (event) => hideShowTask(event));
 
 //automatically hide tasks after their unmark if hide function is active
 list.addEventListener('click', (event) => hideTask(event));
+
+
+//edit task
+list.addEventListener('click', (event) => editTask(event, addButton, addList));
+
+
+
+//load data from localStorage
+window.addEventListener("load", () => loadingTask(pencil, rubbish));
+
+

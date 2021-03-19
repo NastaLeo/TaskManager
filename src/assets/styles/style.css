@@ -10,6 +10,7 @@
     width: 23%;
 }
 
+
   button[data-action="add"] {
     outline: none;
     cursor: pointer;
@@ -47,13 +48,24 @@
   }
   
   div.open {
-    height: 120px;  
+    height: 160px;  
     background-color: rgb(201, 142, 162);
     box-shadow: 3px 3px 3px 3px rgb(201, 142, 162);
     opacity: .7;
   }
-   
+
+  span.notification {
+    visibility: hidden;
+  }
+
+  .visible {
+    visibility: visible;
+    color: red;
+  }
+
   input[type='text'] {
+    display: block;
+    margin: 10px auto;
     outline: none;
     height: 18px;
     width: 70%;
@@ -61,8 +73,8 @@
     text-indent: 10px; 
     border: 2px solid  rgb(206, 66, 112);
   }
-  
-  select{
+
+  select {
     margin-top: 10px;
     outline: none;
     overflow-y: hidden;
@@ -70,7 +82,7 @@
     border: 1.5px solid  rgb(206, 66, 112);
     background-color: rgb(201, 142, 162);
   }
-  
+
   option {
     border: 1px solid  rgb(206, 66, 112);
     outline: none;
@@ -78,17 +90,16 @@
     padding: 0px 5px;
     cursor: pointer;
   }
-  
-  
-  input[type='submit']  {
+
+  input[type='submit'], input[type='reset']  {
     margin-top: 10px;
-    width: 40%;
+    width: 45%;
     cursor: pointer;
     border-radius: 5px;
     outline: none;
     background-color: rgb(201, 142, 162);
     border: 2px solid rgb(206, 66, 112);
-    
+    padding: 2px;
   } 
   
   .cross {
@@ -125,15 +136,15 @@
     cursor: pointer;
   }
   
-  span.unimportant {
+  span.unimportant, div.unimportant ul {
     color: rgb(12, 94, 12);
   }
   
-  span.important {
+  span.important, div.important ul {
     color: rgb(223, 113, 62);
   }
   
-  span.urgent {
+  span.urgent, div.urgent ul {
     color: rgb(223, 62, 62);
   }
 
@@ -155,12 +166,14 @@
     font-family: 'Playfair Display', serif;
     max-height: 80px;
     display: flex;
-    align-items: baseline;
+    align-items: center;
     list-style: none; 
     overflow: hidden;
     transition: height 0.3s ease-in;
+    position: relative;
   }
 
+  
   li.clean {
     height: 0px;
   }
@@ -170,14 +183,79 @@
     cursor: pointer;
   }
   
-  .delete {
+  .delete, .edit {
     margin-left: 5px;
     width: 15px;
     height: 15px;
-    opacity: .8;
+    opacity: .7;
+    position: absolute;
   }
 
-  img.delete:hover {
+  .delete {
+    right: 0px;
+  }
+
+  .edit {
+    right: 20px;
+  }
+
+  img.delete:hover, img.edit:hover {
     cursor: pointer;
     opacity: 1;
+  }
+
+  @media (max-width: 1140px) {
+
+    div.open {
+      height: 220px;  
+    }
+
+    select {
+      height: 55px;
+    }
+
+    option {
+      display: block;
+      text-align: center;
+    }
+
+  }
+
+  @media (max-width: 850px) {
+
+    .wrapper {
+      display: block;
+      margin:0px auto;
+    }
+
+    div.header {
+      margin: 0px auto;
+      width: 40%;
+    }
+
+    .list-container {
+      margin: 30px auto;
+      width: 100%;
+    }
+
+  }
+
+
+  @media (max-width: 550px) {
+
+    div.header {
+      margin: 0px auto;
+      width: 40%;
+    }
+
+    .list-container {
+      flex-direction: column;
+      margin: 0px auto;
+    }
+
+    div.unimportant, div.important, div.urgent {
+      margin: 20px auto;
+      width: 100%;
+    }
+
   }
